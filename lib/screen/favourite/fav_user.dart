@@ -22,23 +22,17 @@ class _FavUserState extends State<FavUser> {
         var favoriteUsers = FirebaseHelper.firebaseHelper.allFavUsers
             .where((user) => user.isFavorite)
             .toList();
-        return ListTile(
-          title: Text('abc'),
-          subtitle: Text('abc@gmail.com'),
-          trailing: Icon(Icons.favorite, color: Colors.red),
+        return ListView.builder(
+          itemCount: favoriteUsers.length,
+          itemBuilder: (context, index) {
+            var user = favoriteUsers[index];
+            return ListTile(
+              title: Text(user.name),
+              subtitle: Text('abc@gmail.com'),
+              trailing: Icon(Icons.favorite, color: Colors.red),
+            );
+          },
         );
-
-        //   ListView.builder(
-        //   itemCount: favoriteUsers.length,
-        //   itemBuilder: (context, index) {
-        //     var user = favoriteUsers[index];
-        //     return ListTile(
-        //       title: Text(user.name),
-        // subtitle: Text('abc@gmail.com'),
-        //       trailing: Icon(Icons.favorite, color: Colors.red),
-        //     );
-        //   },
-        // );
       }),
     );
   }
